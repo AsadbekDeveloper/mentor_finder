@@ -5,8 +5,6 @@ import 'package:mentor_finder/helper/text.dart';
 import '../../widget/mentor_card.dart';
 import '../../widget/search_bar.dart';
 
-import 'categories.dart';
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
@@ -19,18 +17,11 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 20.h),
             Text(
-              "Find Your",
-              style: h2,
-            ),
-            Text(
-              "Perfect Mentor",
+              "O'zingizga ustoz toping",
               style: h2,
             ),
             SizedBox(height: 7.h),
             const SearchBar(),
-            SizedBox(height: 25.h),
-            const Categories(),
-            SizedBox(height: 20.h),
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) =>

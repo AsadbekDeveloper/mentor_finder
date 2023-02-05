@@ -4,7 +4,7 @@ import 'package:mentor_finder/helper/text.dart';
 import 'package:mentor_finder/widget/ratings.dart';
 
 import '../model/mentor_model.dart';
-import '../screens/mentor_info/mentor_info.dart';
+import '../screens/mentor_info/mentor_page.dart';
 
 class MentorCard extends StatelessWidget {
   const MentorCard({
@@ -19,11 +19,14 @@ class MentorCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MentorPage(model: model)));
+            context,
+            MaterialPageRoute(
+              builder: (context) => MentorPage(model: model),
+            ),
+          );
         },
         child: Row(
           children: <Widget>[
@@ -55,7 +58,7 @@ class MentorCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  model.type,
+                  model.tags.join(', '),
                   style: b4,
                 ),
               ],
@@ -67,7 +70,7 @@ class MentorCard extends StatelessWidget {
                 Ratings(rating: model.ratings),
                 SizedBox(height: 5.h),
                 Text(
-                  "\$${model.price}/hr",
+                  "\$${model.price}/soat",
                   style: paymentText,
                 ),
               ],

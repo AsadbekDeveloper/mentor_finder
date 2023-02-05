@@ -2,15 +2,18 @@
 class MentorModel {
   final String name;
   final String image;
-  final String type;
+  final List<String> tags;
   final double ratings;
+  final double experience;
+  final String studentCount;
   final double price;
   MentorModel({
     required this.name,
     required this.image,
-    required this.type,
+    required this.tags,
     required this.ratings,
+    required this.experience,
+    required this.studentCount,
     required this.price,
   });
-
 }

@@ -15,7 +15,7 @@ class Achievements extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          "Achievments",
+          "Yutuqlari:",
           style: h3,
         ),
         SizedBox(height: 16.h),

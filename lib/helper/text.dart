@@ -16,7 +16,7 @@ final linkWhite = TextStyle(
 );
 final ratingText = TextStyle(
   fontWeight: FontWeight.w300,
-  fontSize: 10.sp,
+  fontSize: 12.sp,
   color: Colors.black54,
 );
 final h2 = TextStyle(
