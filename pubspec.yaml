@@ -40,6 +40,15 @@ dependencies:
   flutter_snake_navigationbar: ^0.6.1
   flutter_screenutil: ^5.6.0
   keyboard_dismisser: ^3.0.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.5
+  flow_builder: ^0.0.9
+  flutterfire_ui: ^0.4.3+20
+  cloud_firestore: ^4.3.1
+  firebase_storage: ^11.0.10
+  google_sign_in: ^5.4.4
 
 dev_dependencies:
   flutter_test:

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mentor_finder/helper/color.dart';
+import 'package:mentor_finder/screens/favourite/favourite_page.dart';
 import 'package:mentor_finder/screens/home/home_page.dart';
+import 'package:mentor_finder/screens/map/map_page.dart';
+import 'package:mentor_finder/screens/profile/profile_page.dart';
 
 class MainScaffold extends StatefulWidget {
+  static String id = 'main';
   const MainScaffold({super.key});
 
   @override
@@ -13,11 +17,17 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
+  final List<Widget> _pages = [
+    const HomePage(),
+    const FavouritePage(),
+    const MapPage(),
+    const ProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       child: Scaffold(
-        body: const HomePage(),
+        body: _pages[_currentIndex],
         bottomNavigationBar: SnakeNavigationBar.color(
           snakeViewColor: mainblue,
           unselectedItemColor: maingrey,
@@ -36,6 +46,10 @@ class _MainScaffoldState extends State<MainScaffold> {
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               label: 'favorite',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+              label: 'map',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

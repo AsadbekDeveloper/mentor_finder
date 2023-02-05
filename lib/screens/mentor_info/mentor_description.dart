@@ -5,8 +5,8 @@ import 'package:mentor_finder/helper/text.dart';
 import '../../helper/constants.dart';
 import '../../model/mentor_model.dart';
 
-class ProfileDescription extends StatelessWidget {
-  const ProfileDescription({
+class MentorDescription extends StatelessWidget {
+  const MentorDescription({
     Key? key,
     required this.model,
   }) : super(key: key);

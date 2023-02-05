@@ -4,7 +4,7 @@ import 'package:mentor_finder/helper/text.dart';
 import 'package:mentor_finder/widget/ratings.dart';
 
 import '../model/mentor_model.dart';
-import '../screens/profile/profile_page.dart';
+import '../screens/mentor_info/mentor_info.dart';
 
 class MentorCard extends StatelessWidget {
   const MentorCard({
@@ -23,7 +23,7 @@ class MentorCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProfilePage(model: model)));
+                  builder: (context) => MentorPage(model: model)));
         },
         child: Row(
           children: <Widget>[
