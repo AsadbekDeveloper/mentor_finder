@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentor_finder/helper/constants.dart';
 import 'package:mentor_finder/helper/text.dart';
 import 'package:mentor_finder/screens/mentor_info/mentor_description.dart';
 import '/helper/color.dart';

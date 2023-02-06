@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:mentor_finder/cubit/mentor_cubit.dart';
 import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/screens/favourite/favourite_page.dart';
 import 'package:mentor_finder/screens/home/home_page.dart';
@@ -23,6 +25,15 @@ class _MainScaffoldState extends State<MainScaffold> {
     const MapPage(),
     const ProfilePage(),
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await context.read<MentorCubit>().getMentors();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(

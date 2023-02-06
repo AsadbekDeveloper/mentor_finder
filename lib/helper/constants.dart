@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../model/mentor_model.dart';
 
 class Constants {
@@ -14,6 +16,8 @@ final mentorData = [
     studentCount: '1000+',
     price: 35,
     ratings: 4,
+    location: 'Mirzo Ulug\'g\'bek',
+    coordinates: const LatLng(41.347, 69.356),
   ),
   MentorModel(
     name: "Dilshod Hamdamov",
@@ -23,6 +27,8 @@ final mentorData = [
     tags: ['English', 'Lingvist'],
     price: 65,
     ratings: 5,
+    location: 'Olmozor',
+    coordinates: const LatLng(41.334, 69.228),
   ),
   MentorModel(
     name: "Timur Olimjonov",
@@ -36,5 +42,7 @@ final mentorData = [
     ],
     price: 30,
     ratings: 3,
+    location: 'Amir Temur ko\'chasi',
+    coordinates: const LatLng(41.323, 69.283),
   ),
 ];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/cubit/auth_cubit.dart';
 import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/screens/main_scaffold.dart';
@@ -18,7 +19,10 @@ class LoginPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const FlutterLogo(size: 150),
+              SizedBox(
+                width: 150.w,
+                child: Image.asset('assets/images/MFlogo.png'),
+              ),
               const SizedBox(height: 50),
               _signInButton(),
             ],
@@ -51,11 +55,12 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const <Widget>[
                 Image(
-                    image: AssetImage("assets/images/google.png"), height: 35.0),
+                    image: AssetImage("assets/images/google.png"),
+                    height: 35.0),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    'Sign in with Google',
+                    'Google bilan tizimga kiring',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.grey,

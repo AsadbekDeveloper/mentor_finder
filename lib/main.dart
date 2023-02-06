@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/cubit/auth_cubit.dart';
+import 'package:mentor_finder/cubit/mentor_cubit.dart';
 import 'package:mentor_finder/firebase_options.dart';
 import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/screens/auth/login_page.dart';
@@ -19,6 +20,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => AuthCubit(),
+        ),
+        BlocProvider(
+          create: (context) => MentorCubit(),
         ),
       ],
       child: const MyApp(),
