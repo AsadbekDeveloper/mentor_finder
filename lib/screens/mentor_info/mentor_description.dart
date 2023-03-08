@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/helper/text.dart';
@@ -5,6 +6,7 @@ import 'package:mentor_finder/helper/text.dart';
 import '../../helper/color.dart';
 import '../../helper/constants.dart';
 import '../../model/mentor_model.dart';
+import '../../utils/load_image_from_storage.dart';
 import '../../widget/ratings.dart';
 
 class MentorDescription extends StatelessWidget {
@@ -22,21 +24,38 @@ class MentorDescription extends StatelessWidget {
       children: [
         Row(
           children: [
-            Container(
-              height: 85.h,
-              width: 85.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: AssetImage(model.image),
-                ),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    blurRadius: 10,
-                    color: Colors.grey.shade400,
-                    offset: const Offset(4, 4),
-                  ),
-                ],
+            ClipOval(
+              child: SizedBox(
+                height: 80.h,
+                width: 80.h,
+                child: model.image != null
+                    ? FutureBuilder(
+                        future: loadImage(model.image!),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return CachedNetworkImage(
+                              imageUrl: snapshot.data!,
+                              progressIndicatorBuilder:
+                                  (context, url, progress) => Center(
+                                child: SizedBox(
+                                  width: 15,
+                                  height: 15,
+                                  child: CircularProgressIndicator(
+                                    value: progress.progress,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            );
+                          }
+                          return Image.asset(
+                              'assets/images/personPlaceholder.png');
+                        },
+                      )
+                    : Image.asset('assets/images/personPlaceholder.png'),
               ),
             ),
             SizedBox(

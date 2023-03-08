@@ -1,11 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mentor_finder/cubit/auth_cubit.dart';
+import '../screens/auth/cubit/auth_cubit.dart';
 
 class AuthApi {
   final FirebaseFirestore firestore;
@@ -27,7 +24,6 @@ class AuthApi {
       );
       UserCredential userCredential =
           await auth.signInWithCredential(credentials);
-      log(userCredential.user?.email ?? 'No email');
       if (userCredential.user != null) {
         return AuthState(
             'Successfull', AuthStatus.success, userCredential.user?.email??'');

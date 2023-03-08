@@ -7,7 +7,7 @@ part 'mentor_state.dart';
 
 class MentorCubit extends Cubit<MentorState> {
   MentorCubit() : super(MentorInitial());
-  Future getMentors() async {
+  Future<List<MentorModel>> getMentors() async {
     emit(MentorLoading());
     final List<MentorModel> mentors = await MentorApi().getMentors();
     if (mentors.isNotEmpty) {
@@ -17,5 +17,6 @@ class MentorCubit extends Cubit<MentorState> {
     } else {
       emit(MentorError());
     }
+    return mentors;
   }
 }

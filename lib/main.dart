@@ -3,12 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mentor_finder/cubit/auth_cubit.dart';
 import 'package:mentor_finder/cubit/mentor_cubit.dart';
 import 'package:mentor_finder/firebase_options.dart';
 import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/screens/auth/login_page.dart';
+import 'package:mentor_finder/screens/favourite/cubit/favourite_mentor_cubit.dart';
 import 'package:mentor_finder/screens/main_scaffold.dart';
+import 'screens/map/cubit/marker_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,10 +20,13 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthCubit(),
+          create: (context) => MentorCubit(),
         ),
         BlocProvider(
-          create: (context) => MentorCubit(),
+          create: (context) => MarkerCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FavouriteMentorCubit(),
         ),
       ],
       child: const MyApp(),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/helper/text.dart';
@@ -5,6 +6,7 @@ import 'package:mentor_finder/widget/ratings.dart';
 
 import '../model/mentor_model.dart';
 import '../screens/mentor_info/mentor_page.dart';
+import '../utils/load_image_from_storage.dart';
 
 class MentorCard extends StatelessWidget {
   const MentorCard({
@@ -13,7 +15,6 @@ class MentorCard extends StatelessWidget {
   }) : super(key: key);
 
   final MentorModel model;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,21 +31,38 @@ class MentorCard extends StatelessWidget {
         },
         child: Row(
           children: <Widget>[
-            Container(
-              height: 75.h,
-              width: 75.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    image: AssetImage(model.image),
-                  ),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      blurRadius: 10,
-                      color: Colors.grey.shade400,
-                      offset: const Offset(4, 4),
-                    )
-                  ]),
+            ClipOval(
+              child: SizedBox(
+                height: 50.h,
+                width: 50.h,
+                child: model.image != null
+                    ? FutureBuilder(
+                        future: loadImage(model.image!),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return CachedNetworkImage(
+                              imageUrl: snapshot.data!,
+                              progressIndicatorBuilder:
+                                  (context, url, progress) => Center(
+                                child: SizedBox(
+                                  width: 15,
+                                  height: 15,
+                                  child: CircularProgressIndicator(
+                                    value: progress.progress,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            );
+                          }
+                          return Image.asset(
+                              'assets/images/personPlaceholder.png');
+                        })
+                    : Image.asset('assets/images/personPlaceholder.png'),
+              ),
             ),
             const SizedBox(
               width: 12,

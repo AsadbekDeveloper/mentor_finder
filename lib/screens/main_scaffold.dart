@@ -9,6 +9,8 @@ import 'package:mentor_finder/screens/home/home_page.dart';
 import 'package:mentor_finder/screens/map/map_page.dart';
 import 'package:mentor_finder/screens/profile/profile_page.dart';
 
+import 'map/cubit/marker_cubit.dart';
+
 class MainScaffold extends StatefulWidget {
   static String id = 'main';
   const MainScaffold({super.key});
@@ -30,7 +32,9 @@ class _MainScaffoldState extends State<MainScaffold> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await context.read<MentorCubit>().getMentors();
+      final mentors = await context.read<MentorCubit>().getMentors();
+      if (!mounted) return;
+      context.read<MarkerCubit>().generateMarkers(mentors);
     });
   }
 
