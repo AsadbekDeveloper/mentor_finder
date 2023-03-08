@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/helper/text.dart';
 import 'package:mentor_finder/widget/ratings.dart';
 
@@ -17,18 +18,28 @@ class MentorCard extends StatelessWidget {
   final MentorModel model;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MentorPage(model: model),
-            ),
-          );
-        },
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MentorPage(model: model),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 10,
+        ),
+        decoration: BoxDecoration(
+          color: mainwhite,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            cardShadow,
+          ],
+        ),
         child: Row(
           children: <Widget>[
             ClipOval(

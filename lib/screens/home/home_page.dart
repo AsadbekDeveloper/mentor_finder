@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/cubit/mentor_cubit.dart';
+import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/helper/text.dart';
 import '../../widget/mentor_card.dart';
 import '../../widget/search_bar.dart';
@@ -31,10 +32,43 @@ class HomePage extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is MentorLoaded) {
-                    return ListView.builder(
-                      itemBuilder: (context, index) =>
-                          MentorCard(model: state.mentors[index]),
-                      itemCount: state.mentors.length,
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          child: ListView.separated(
+                            itemBuilder: (context, index) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 20,
+                              ),
+                              decoration: BoxDecoration(
+                                color: lightgrey,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Text(
+                                state.tags.elementAt(index),
+                              ),
+                            ),
+                            itemCount: state.tags.length,
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                              width: 10,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (context, index) =>
+                                MentorCard(model: state.mentors[index]),
+                            itemCount: state.mentors.length,
+                          ),
+                        ),
+                      ],
                     );
                   } else {
                     return SizedBox(

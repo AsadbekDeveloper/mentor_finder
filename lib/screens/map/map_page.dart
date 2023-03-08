@@ -1,14 +1,11 @@
 import 'dart:async';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mentor_finder/helper/color.dart';
 import '../../cubit/mentor_cubit.dart';
-import '../../helper/text.dart';
-import '../../widget/mentor_card.dart';
-import '../../widget/ratings.dart';
 import 'cubit/marker_cubit.dart';
+import 'map_mentor_card.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -62,53 +59,27 @@ class _MapPageState extends State<MapPage> {
                       bottom: 10,
                       right: 0,
                       child: SizedBox(
-                        height: 150.h,
                         width: size.width,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => GestureDetector(
+                        child: CarouselSlider.builder(
+                          itemCount: state.mentors.length,
+                          itemBuilder: (context, index, realIndex) =>
+                              GestureDetector(
                             behavior: HitTestBehavior.opaque,
                             onTap: () async {
                               await onCardClick(
                                   state.mentors[index].coordinates!);
                             },
-                            child: Container(
-                              width: 150.w,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: mainwhite,
-                              ),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      SizedBox(
-                                        width: 120.h,
-                                        height: 120.h,
-                                        child: Image.asset(
-                                            'assets/icons/mentor.jpg'),
-                                      ),
-                                      Text(state.mentors[index].name)
-                                    ],
-                                  ),
-                                  const Positioned(
-                                    top: 5,
-                                    right: 5,
-                                    child: CircleAvatar(
-                                      radius: 15,
-                                      child: Icon(
-                                        Icons.favorite,
-                                        size: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            child: MapMentorCard(
+                              mentor: state.mentors[index],
                             ),
                           ),
-                          itemCount: state.mentors.length,
+                          options: CarouselOptions(
+                            height: 100,
+                            aspectRatio: 3,
+                            autoPlay: true,
+                            enlargeFactor: 0.3,
+                            enlargeCenterPage: true,
+                          ),
                         ),
                       ),
                     );

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +9,7 @@ import '../../../model/mentor_model.dart';
 part 'marker_state.dart';
 
 class MarkerCubit extends Cubit<MarkerState> {
-  MarkerCubit() : super(MarkerState(Set()));
+  MarkerCubit() : super(const MarkerState({}));
   void generateMarkers(List<MentorModel> mentors) {
     final Set<Marker> markers = List.generate(
       mentors.length,

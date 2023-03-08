@@ -13,8 +13,10 @@ class MentorInitial extends MentorState {}
 class MentorLoading extends MentorState {}
 
 class MentorLoaded extends MentorState {
+  final Set<String> tags;
   final List<MentorModel> mentors;
   const MentorLoaded({
+    required this.tags,
     required this.mentors,
   });
   @override
