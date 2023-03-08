@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentor_finder/helper/text.dart';
+import 'package:mentor_finder/screens/favourite/cubit/favourite_mentor_cubit.dart';
 import 'package:mentor_finder/screens/mentor_info/mentor_description.dart';
 import '/helper/color.dart';
 import '/model/mentor_model.dart';
@@ -39,7 +41,33 @@ class MentorPage extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        const Icon(Icons.favorite),
+                        BlocBuilder<FavouriteMentorCubit, FavouriteMentorState>(
+                          builder: (context, state) {
+                            bool isFavourite =
+                                state.favouriteMentors.contains(model.id);
+                            return GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                if (isFavourite) {
+                                  context
+                                      .read<FavouriteMentorCubit>()
+                                      .remove(model.id);
+                                } else {
+                                  context
+                                      .read<FavouriteMentorCubit>()
+                                      .add(model.id);
+                                }
+                              },
+                              child: isFavourite
+                                  ? const Icon(
+                                      Icons.favorite,
+                                    )
+                                  : const Icon(
+                                      Icons.favorite_outline_outlined,
+                                    ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     MentorDescription(model: model),

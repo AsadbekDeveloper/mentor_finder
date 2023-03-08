@@ -9,6 +9,7 @@ import 'package:mentor_finder/helper/color.dart';
 import 'package:mentor_finder/screens/auth/login_page.dart';
 import 'package:mentor_finder/screens/favourite/cubit/favourite_mentor_cubit.dart';
 import 'package:mentor_finder/screens/main_scaffold.dart';
+import 'package:mentor_finder/utils/mentor_preferences.dart';
 import 'screens/map/cubit/marker_cubit.dart';
 
 void main() async {
@@ -16,6 +17,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await MentorPreferences.init();
   runApp(
     MultiBlocProvider(
       providers: [
@@ -26,7 +28,7 @@ void main() async {
           create: (context) => MarkerCubit(),
         ),
         BlocProvider(
-          create: (context) => FavouriteMentorCubit(),
+          create: (context) => FavouriteMentorCubit()..init(),
         ),
       ],
       child: const MyApp(),
@@ -42,11 +44,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
   bool isSignedIn = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {

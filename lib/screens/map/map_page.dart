@@ -88,7 +88,7 @@ class _MapPageState extends State<MapPage> {
                                         width: 120.h,
                                         height: 120.h,
                                         child: Image.asset(
-                                            'assets/images/personPlaceholder.png'),
+                                            'assets/icons/mentor.jpg'),
                                       ),
                                       Text(state.mentors[index].name)
                                     ],

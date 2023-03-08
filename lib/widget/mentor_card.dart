@@ -58,10 +58,9 @@ class MentorCard extends StatelessWidget {
                                   const Icon(Icons.error),
                             );
                           }
-                          return Image.asset(
-                              'assets/images/personPlaceholder.png');
+                          return Image.asset('assets/icons/mentor.jpg');
                         })
-                    : Image.asset('assets/images/personPlaceholder.png'),
+                    : Image.asset('assets/icons/mentor.jpg'),
               ),
             ),
             const SizedBox(

@@ -2,11 +2,11 @@
 part of 'favourite_mentor_cubit.dart';
 
 class FavouriteMentorState extends Equatable {
-  final List<MentorModel> favouriteMentors;
+  final List<String> favouriteMentors;
   const FavouriteMentorState(
     this.favouriteMentors,
   );
 
   @override
-  List<Object> get props => [favouriteMentors];
+  List<Object> get props => [...favouriteMentors];
 }
